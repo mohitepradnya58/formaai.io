@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 500;
+        color: #fff;
+      }
+      .info p {
+        text-align: center;
+        color: #999;
+        text-transform: none;
+        font-weight: 600;
+        font-size: 15px;
+        margin-top: 2px;
+      }
+
+      .info i {
+        color: #55acee;
+      }
+
+      h1 {
+        text-align: center;
+        color: #666;
+        text-shadow: 1px 1px 0px #fff;
+        margin: 50px 0px 0px 0px;
+      }
+
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      h3 {
+        font-size: 17px;
+        font-weight: 600;
+      }
+
+      a {
+        text-decoration: inherit;
+        color: inherit;
+      }
+
+      a:hover {
+        text-decoration: inherit;
+      }
+
+      hr {
+        position: relative;
+        margin-top: 27%;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        opacity: 0.15;
+      }
+
+      .content {
+        /*   position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;*/
+        width: 100%;
+        /*height: 900px;*/
+        height: fit-content;
+        /* background: #f2f2f2;*/
+        z-index: -1;
+        padding: 2rem 0;
+      }
+      h1 {
+        margin-top: 0;
+      }
+
+      .container {
+        display: block;
+        position: relative;
+        width: 530px;
+        height: 679px;
+        margin: auto;
+        /* margin-top: 180px;*/
+        margin-top: 55px;
+        /*box-shadow: 1px 5px 10px 1px #333;*/
+        overflow: hidden;
+      }
+
+      img.bg-img {
+        display: block;
+        position: absolute;
+        margin: auto;
+        border-radius: 20px;
+      }
+
+      .menu {
+        position: relative;
+        padding: 15% 13% 0 13%;
+      }
+
+      .menu h2 {
+        display: inline;
+        margin: 20px;
+        padding-bottom: 3px;
+        border-bottom: 3px solid #1161ee;
+      }
+      a:not(.active) {
+        cursor: inherit;
+      }
+      .menu .active h2 {
+        border-bottom: 0 solid #1161ee;
+        color: #aeaeae;
+        transition: color 0.5s ease-in;
+      }
+
+      .connexion {
+        position: absolute;
+        padding: 15% 13%;
+        width: 74%;
+        left: 0px;
+        transition: all 0.7s;
+      }
+
+      .connexion h2 {
+        display: inline;
+        margin: 20px;
+        padding-bottom: 3px;
+        border-bottom: 2px solid #1161ee;
+      }
+
+      .connexion h4 {
+        margin-bottom: 0;
+        text-align: center;
+        color: #ffffff;
+        opacity: 0.3;
+      }
+
+      .connexion h4:hover {
+        opacity: 0.8;
+        transition: all 0.1s ease-in;
+      }
+
+      label {
+        display: block;
+        margin-top: 10px;
+        padding: 5px 10px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      input {
+        display: block;
+        width: 93%;
+        margin: auto;
+        padding: 13px;
+        border: 0;
+        border-radius: 20px;
+        font-family: "Roboto", sans-serif;
+        /*  opacity: 0.15;*/
+        color: black;
+        font-size: 16px;
+      }
+
+      input p {
+        color: #fff;
+        opacity: 1;
+      }
+
+      input.submit {
+        width: 100%;
+        padding: 10px;
+        font-size: 17px;
+        font-weight: 700;
+        color: #fff;
+        opacity: 1;
+        background-color: #1161ee;
+        cursor: pointer;
+      }
+
+      .check label {
+        float: left;
+        width: 10%;
+        margin-left: 5%;
+      }
+
+      .check h3 {
+        padding: 15px;
+      }
+
+      .checkbox {
+        display: none;
+      }
+
+      .checkbox:checked + svg .path-moving {
+        -webkit-transition: stroke 0.4s, stroke-dasharray 0.4s,
+          stroke-dashoffset 0.4s cubic-bezier(0.3, 0.8, 0.6, 1.5);
+        transition: stroke 0.4s, stroke-dasharray 0.4s,
+          stroke-dashoffset 0.4s cubic-bezier(0.3, 0.8, 0.6, 1.5);
+        stroke-dasharray: 25 90;
+        stroke-dashoffset: 0;
+      }
+
+      .path-moving,
+      .path-back {
+        fill: none;
+        stroke: #1161ee;
+        stroke-width: 3px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .path-moving {
+        -webkit-transition: stroke 0.4s, stroke-dasharray 0.4s,
+          stroke-dashoffset 0.4s;
+        transition: stroke 0.4s, stroke-dasharray 0.4s, stroke-dashoffset 0.4s;
+        stroke: #ffffff;
+        stroke-dasharray: 110;
+        stroke-dashoffset: -32;
+      }
+      .enregistrer {
+        position: absolute;
+        padding: 15% 13%;
+        width: 74%;
+        right: 0px;
+        transition: all 0.7s;
+      }
+      .active-section {
+        position: absolute;
+        right: 500px;
+      }
+      .remove-section {
+        position: absolute;
+        left: 500px;
+      }
+      .content {
+        background: linear-gradient(
+          90deg,
+          rgba(2, 0, 36, 1) 0%,
+          rgba(107, 9, 121, 1) 0%,
+          rgba(0, 212, 255, 1) 100%
+        );
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      }
+      #schedule-call {
+        max-width: 66%;
+        margin: 0 auto;
+      }
+      .panalist {
+        width: 300px;
+        height: 300px;
+        background: aliceblue;
+        padding: 2rem;
+        display: grid;
+        place-content: center;
+        border-radius: 50px;
+        row-gap: 10px;
+        -webkit-box-shadow: 3px 1px 12px -1px rgba(203, 99, 235, 1);
+        -moz-box-shadow: 3px 1px 12px -1px rgba(203, 99, 235, 1);
+        box-shadow: 3px 1px 12px -1px rgba(203, 99, 235, 1);
+      }
+      .panelcontent {
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        padding: 2rem;
+        justify-content: center;
+      }
+      li {
+        line-height: 2rem;
+        font-size: 18px;
+        list-style: none;
+      }
+      ul {
+        padding: 2rem;
+        text-align: center;
+      }
+      li::before {
+        content: "\2713";
+        vertical-align: sub;
+        color: #a3136d;
+        font-size: 20px;
+        font-weight: 300;
+        display: inline-block;
+        width: 1em;
+        left: 10px;
+        /* position: absolute;*/
+      }
+      .section3 {
+        background-color: #dbeff3;
+      }
+      .section2 {
+        padding-bottom: 6rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section1">
+      <div class="content">
+        <div>
+          <h1>
+            <a
+              href="https://www.forma.ai?hsLang=en"
+              target="_blank"
+              id="hs-link-dnd__header-module-2_hs_logo_widget"
+              rel="noopener"
+              style="border-width: 0px; border: 0px"
+              ><img
+                src="https://info.forma.ai/hubfs/Brand%20Assets/Forma-Logomark-Knockout_RGB.svg"
+                class="hs-image-widget"
+                style="width: 300px; border-width: 0px; border: 0px"
+                width="300"
+                alt="Forma-Logomark-Knockout_RGB"
+                title="Forma-Logomark-Knockout_RGB"
+            /></a>
+          </h1>
+          <div class="info">
+            <h2
+              style="text-align: center; font-size: 28px; font-weight: normal"
+            >
+              <span
+                style="
+                  font-family: Arial, Helvetica, sans-serif;
+                  color: #ffffff;
+                "
+                >SALES COMP PANEL</span
+              >
+            </h2>
+            <h1
+              id="schedule-call"
+              style="text-align: center; font-weight: 300; font-size: 56px"
+              data-hs-anchor="true"
+            >
+              <span
+                style="
+                  font-family: Arial, Helvetica, sans-serif;
+                  color: #ffffff;
+                "
+                >Panel: The Behavioral Science Behind Sales Incentives</span
+              >
+            </h1>
+            <div
+              style="
+                font-family: Arial, Helvetica, sans-serif;
+                color: #ffffff;
+                text-align: center;
+                margin-top: 2rem;
+                font-size: 22px;
+              "
+            >
+              Thursday, May 4&nbsp; |&nbsp; 2-3 pm ET
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <img
+            class="bg-img"
+            src="https://mariongrandvincent.github.io/HTML-Personal-website/img-codePen/bg.jpg"
+            alt=""
+          />
+          <div class="menu">
+            <a href="#connexion" class="btn-connexion"><h2>SIGN IN</h2></a>
+            <a href="#enregistrer" class="btn-enregistrer active"
+              ><h2>SIGN UP</h2></a
+            >
+          </div>
+          <div class="connexion">
+            <div class="contact-form">
+              <label>USERNAME</label>
+              <input placeholder="" type="text" />
+
+              <label>PASSWORD</label>
+              <input placeholder="" type="text" />
+
+              <div class="check">
+                <label>
+                  <input id="check" type="checkbox" class="checkbox" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26px"
+                    height="23px"
+                  >
+                    <path
+                      class="path-back"
+                      d="M1.5,6.021V2.451C1.5,2.009,1.646,1.5,2.3,1.5h18.4c0.442,0,0.8,0.358,0.8,0.801v18.398c0,0.442-0.357,0.801-0.8,0.801H2.3c-0.442,0-0.8-0.358-0.8-0.801V6"
+                    />
+                    <path
+                      class="path-moving"
+                      d="M24.192,3.813L11.818,16.188L1.5,6.021V2.451C1.5,2.009,1.646,1.5,2.3,1.5h18.4c0.442,0,0.8,0.358,0.8,0.801v18.398c0,0.442-0.357,0.801-0.8,0.801H2.3c-0.442,0-0.8-0.358-0.8-0.801V6"
+                    />
+                  </svg>
+                </label>
+                <h3>Keep me signed in</h3>
+              </div>
+
+              <input class="submit" value="SIGN IN" type="submit" />
+            </div>
+
+            <hr />
+            <a href="https://www.grandvincent-marion.fr/" target="_blank"
+              ><h4>Forgot password?</h4></a
+            >
+          </div>
+
+          <div class="enregistrer active-section">
+            <div class="contact-form">
+              <label>USERNAME</label>
+              <input placeholder="" type="text" />
+
+              <label>E-MAIL</label>
+              <input placeholder="" type="text" />
+
+              <label>PASSWORD</label>
+              <input placeholder="" type="text" />
+
+              <label>CONFIRM PASSWORD</label>
+              <input placeholder="" type="text" />
+
+              <div class="check">
+                <label>
+                  <input id="check" type="checkbox" class="checkbox" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="26px"
+                    height="23px"
+                  >
+                    <path
+                      class="path-back"
+                      d="M1.5,6.021V2.451C1.5,2.009,1.646,1.5,2.3,1.5h18.4c0.442,0,0.8,0.358,0.8,0.801v18.398c0,0.442-0.357,0.801-0.8,0.801H2.3c-0.442,0-0.8-0.358-0.8-0.801V6"
+                    />
+                    <path
+                      class="path-moving"
+                      d="M24.192,3.813L11.818,16.188L1.5,6.021V2.451C1.5,2.009,1.646,1.5,2.3,1.5h18.4c0.442,0,0.8,0.358,0.8,0.801v18.398c0,0.442-0.357,0.801-0.8,0.801H2.3c-0.442,0-0.8-0.358-0.8-0.801V6"
+                    />
+                  </svg>
+                </label>
+                <h3>I agree</h3>
+              </div>
+
+              <input class="submit" value="SIGN UP" type="submit" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section2" style="padding: 3rem">
+      <h1
+        style="
+          text-align: center;
+          font-size: 40px;
+          padding: 3rem;
+          color: #4452a9;
+        "
+      >
+        <div
+          style="font-family: Helvetica, Arial, sans-serif; color: #6b3ecc"
+        ></div>
+        Event Panelists
+      </h1>
+
+      <div class="panelcontent">
+        <div class="panalist">
+          <div style="display: grid; place-content: center">
+            <a
+              href="https://www.linkedin.com/in/nabeilalazzam/"
+              target="_blank"
+              id="hs-link-module_1664546462113_"
+              rel="noopener"
+              style="border-width: 0px; border: 0px"
+              ><img
+                src="https://info.forma.ai/hubfs/Group%201038.png"
+                class="hs-image-widget"
+                style="width: 150px; height: 150px"
+                alt="nabeil-alazzam"
+                title="nabeil-alazzam"
+                loading="lazy"
+            /></a>
+          </div>
+          <div style="color: black; text-align: center">
+            <p style="font-weight: bold; font-size: 24px; margin: 5px">
+              Nabeil Alazzam
+            </p>
+            <p style="margin: 5px; font-size: 18px">Founder and CEO</p>
+            <p style="margin: 5px; font-size: 18px">@ Forma.AI</p>
+          </div>
+        </div>
+
+        <div class="panalist">
+          <div style="display: grid; place-content: center">
+            <a
+              href="https://www.linkedin.com/in/nabeilalazzam/"
+              target="_blank"
+              id="hs-link-module_1664546462113_"
+              rel="noopener"
+              style="border-width: 0px; border: 0px"
+              ><img
+                src="https://info.forma.ai/hubfs/Group%201039%20(1).png"
+                class="hs-image-widget"
+                style="max-width: 150px; height: 150px"
+                alt="justin-lane"
+                title="justin-lane"
+                loading="lazy"
+            /></a>
+          </div>
+          <div style="color: black; text-align: center">
+            <p style="font-weight: bold; font-size: 24px; margin: 5px">
+              Justin Lane
+            </p>
+            <p style="margin: 5px; font-size: 18px">
+              VP, Professional Services
+            </p>
+            <p style="margin: 5px; font-size: 18px">@ Forma.AI</p>
+          </div>
+        </div>
+
+        <div class="panalist">
+          <div style="display: grid; place-content: center">
+            <a
+              href="https://www.linkedin.com/in/nabeilalazzam/"
+              target="_blank"
+              id="hs-link-module_1664546462113_"
+              rel="noopener"
+              style="border-width: 0px; border: 0px"
+            >
+              <img
+                src="https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=243&amp;height=243&amp;name=Group%201056.png"
+                class="hs-image-widget"
+                alt="Group 1056"
+                title="Group 1056"
+                loading="lazy"
+                srcset="
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=122&amp;height=122&amp;name=Group%201056.png 122w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=243&amp;height=243&amp;name=Group%201056.png 243w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=365&amp;height=365&amp;name=Group%201056.png 365w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=486&amp;height=486&amp;name=Group%201056.png 486w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=608&amp;height=608&amp;name=Group%201056.png 608w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201056.png?width=729&amp;height=729&amp;name=Group%201056.png 729w
+                "
+                style="width: 150px; height: 150px"
+              />
+            </a>
+          </div>
+          <div style="color: black; text-align: center">
+            <p style="font-weight: bold; font-size: 24px; margin: 5px">
+              Michael Ahearne
+            </p>
+            <p style="margin: 5px; font-size: 18px">Professor</p>
+            <p style="margin: 5px; font-size: 18px">@ University of Houston</p>
+          </div>
+        </div>
+
+        <div class="panalist">
+          <div style="display: grid; place-content: center">
+            <a
+              href="https://www.linkedin.com/in/nabeilalazzam/"
+              target="_blank"
+              id="hs-link-module_1664546462113_"
+              rel="noopener"
+              style="border-width: 0px; border: 0px"
+              ><img
+                src="https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=243&amp;height=243&amp;name=Group%201057.png"
+                class="hs-image-widget"
+                alt="Group 1057"
+                title="Group 1057"
+                loading="lazy"
+                srcset="
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=122&amp;height=122&amp;name=Group%201057.png 122w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=243&amp;height=243&amp;name=Group%201057.png 243w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=365&amp;height=365&amp;name=Group%201057.png 365w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=486&amp;height=486&amp;name=Group%201057.png 486w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=608&amp;height=608&amp;name=Group%201057.png 608w,
+                  https://info.forma.ai/hs-fs/hubfs/Group%201057.png?width=729&amp;height=729&amp;name=Group%201057.png 729w
+                "
+                style="width: 150px; height: 150px"
+            /></a>
+          </div>
+          <div style="color: black; text-align: center">
+            <p style="font-weight: bold; font-size: 24px; margin: 5px">
+              Nick Lee
+            </p>
+            <p style="margin: 5px; font-size: 18px">Professor</p>
+            <p style="margin: 5px; font-size: 18px">
+              @ Warwick Business School
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section3" style="padding: 3rem">
+      <h1
+        style="
+          text-align: center;
+          font-size: 40px;
+          padding: 3rem;
+          color: #4452a9;
+        "
+      >
+        <div
+          style="font-family: Helvetica, Arial, sans-serif; color: #6b3ecc"
+        ></div>
+        Event Overview
+      </h1>
+
+      <p
+        style="
+          text-align: center;
+          color: #a3136d;
+          margin-top: 0;
+          line-height: 25px;
+        "
+      >
+        Sales incentives are the bridge between GTM strategy and execution. Done
+        right, they can drive growth, improve profitability, and retain top
+        sales talent. But not all sales incentives are created equal. The most
+        effective incentives are data-driven and rooted in psychology. Once you
+        understand what motivates your sales force, it's easier to create a plan
+        that drives the right behaviors. The result? More reps hit quota, and
+        your company hits its growth goals. Not sure if your sales incentives
+        pass the test? Don't worry, we're here to help – and we're bringing in
+        the experts. Join us on May 4, along with professors Michael Ahearne,
+        Ph.D. and Nick Lee, Ph.D. for a discussion on:
+      </p>
+
+      <ul style="color: black">
+        <li>
+          The psychology of incentives: what drives salespeople to perform at
+          their best?
+        </li>
+        <li>
+          How insights from behavioral and decision sciences research can be
+          applied to your sales incentive plan
+        </li>
+        <li>
+          Nudge-based strategies for best communicating the plan and the
+          potential to the sales team
+        </li>
+        <li>
+          How to measure the effectiveness of the plan using modern statistical
+          methods
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="section4"
+      style="
+        padding: 5rem;
+        text-align: center;
+        font-size: 30px;
+        background: black;
+        color: white;
+      "
+    >
+      &copy; Copyright Reserved Forma.ai 2023
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script>
+      $(".btn-enregistrer").click(function () {
+        $(".connexion").addClass("remove-section");
+        $(".enregistrer").removeClass("active-section");
+        $(".btn-enregistrer").removeClass("active");
+        $(".btn-connexion").addClass("active");
+      });
+
+      $(".btn-connexion").click(function () {
+        $(".connexion").removeClass("remove-section");
+        $(".enregistrer").addClass("active-section");
+        $(".btn-enregistrer").addClass("active");
+        $(".btn-connexion").removeClass("active");
+      });
+    </script>
+  </body>
+</html>
